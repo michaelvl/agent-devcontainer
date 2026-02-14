@@ -1,18 +1,26 @@
-# AI Coding Agents Feature
 
-Installs AI coding agents (OpenCode and/or Claude-Code) with all necessary dependencies including git and GitHub CLI.
+# AI Coding Agents (OpenCode & Claude-Code) (ai-coding-agents)
 
-## Usage
+Installs AI coding agents (OpenCode and/or Claude-Code) with git and GitHub CLI dependencies, including OpenCode configuration
 
-Add this feature to your `devcontainer.json`:
+## Example Usage
 
 ```json
-{
-  "features": {
+"features": {
     "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {}
-  }
 }
 ```
+
+## Options
+
+| Options Id | Description | Type | Default Value |
+|-----|-----|-----|-----|
+| installOpencode | Install OpenCode AI coding agent | boolean | true |
+| opencodeVersion | Version of OpenCode to install | string | latest |
+| installClaudeCode | Install Claude-Code AI coding agent | boolean | true |
+| claudeCodeVersion | Version of Claude-Code to install | string | latest |
+
+## What Gets Installed
 
 This will install:
 - ✅ **OpenCode** (latest version)
@@ -22,16 +30,7 @@ This will install:
 - ✅ **GitHub CLI** (gh) (via dependency)
 - ✅ **OpenCode configuration** at `~/.config/opencode/opencode.jsonc`
 
-## Options
-
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `installOpencode` | boolean | `true` | Install OpenCode AI coding agent |
-| `opencodeVersion` | string | `"latest"` | Version of OpenCode to install |
-| `installClaudeCode` | boolean | `true` | Install Claude-Code AI coding agent |
-| `claudeCodeVersion` | string | `"latest"` | Claude-Code version (`latest`, `stable`, `next`) |
-
-## Examples
+## Usage Examples
 
 ### Install only OpenCode
 
@@ -98,9 +97,14 @@ This feature automatically installs the following dependencies (you don't need t
 
 These are installed via the `dependsOn` property using official devcontainer features.
 
-## Notes
+## Implementation Notes
 
 - Both agents are installed globally and available on the PATH
 - The installation script runs as root but sets proper permissions for the container user
 - Configuration files are owned by the container user (typically `vscode`, `node`, or `codespace`)
 - If neither agent is selected for installation, the script will skip with a warning
+
+
+---
+
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/michaelvl/agent-devcontainer/blob/main/src/ai-coding-agents/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
