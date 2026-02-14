@@ -6,15 +6,17 @@ A collection of [Dev Container Features](https://containers.dev/implementors/fea
 
 ### ai-coding-agents
 
-Installs AI coding agents (OpenCode and/or Claude-Code) along with essential dependencies.
+Installs AI coding agents (OpenCode and/or Claude-Code).
 
 **What's included:**
 - 🤖 OpenCode - Open source AI coding agent
 - 🤖 Claude-Code - Anthropic's AI coding agent  
+- ⚙️ Pre-configured OpenCode settings
+
+**Prerequisites (must be added to your devcontainer.json):**
+- 📦 Node.js - JavaScript runtime (for agent installation)
 - 📝 git - Version control
 - 🐙 GitHub CLI (gh) - GitHub command-line tool
-- 📦 Node.js - JavaScript runtime (for agent installation)
-- ⚙️ Pre-configured OpenCode settings
 
 **Quick Start:**
 
@@ -22,6 +24,9 @@ Installs AI coding agents (OpenCode and/or Claude-Code) along with essential dep
 {
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
+    "ghcr.io/devcontainers/features/node": {},
+    "ghcr.io/devcontainers/features/git": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
     "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {}
   }
 }
@@ -38,6 +43,9 @@ Add features to your `devcontainer.json`:
   "name": "My Dev Container",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
+    "ghcr.io/devcontainers/features/node": {},
+    "ghcr.io/devcontainers/features/git": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
     "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {
       "installOpencode": true,
       "installClaudeCode": true,

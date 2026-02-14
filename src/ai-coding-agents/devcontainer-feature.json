@@ -1,6 +1,6 @@
 {
   "id": "ai-coding-agents",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "AI Coding Agents (OpenCode & Claude-Code)",
   "description": "Installs AI coding agents (OpenCode and/or Claude-Code) with git and GitHub CLI dependencies, including OpenCode configuration",
   "documentationURL": "https://github.com/michaelvl/agent-devcontainer/tree/main/src/ai-coding-agents",
@@ -34,13 +34,9 @@
       "description": "Version of Claude-Code to install"
     }
   },
-  "dependsOn": {
-    "ghcr.io/devcontainers/features/node": {},
-    "ghcr.io/devcontainers/features/git": {},
-    "ghcr.io/devcontainers/features/github-cli": {}
-  },
   "installsAfter": [
-    "ghcr.io/devcontainers/features/common-utils"
+    "ghcr.io/devcontainers/features/common-utils",
+    "ghcr.io/devcontainers/features/node"
   ],
   "customizations": {
     "vscode": {

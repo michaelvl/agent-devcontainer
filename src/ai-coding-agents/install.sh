@@ -55,11 +55,21 @@ fi
 
 echo "User home directory: ${USER_HOME}"
 
-# Verify npm is available (should be installed via node dependency)
+# Verify npm is available (should be installed via node feature)
 if ! command -v npm >/dev/null 2>&1; then
-        echo "ERROR: npm not found. The Node.js feature should be installed first via dependsOn."
-        echo "This feature depends on ghcr.io/devcontainers/features/node"
-        exit 1
+	echo "ERROR: npm not found. The Node.js feature must be installed."
+	echo ""
+	echo "Please add the Node.js feature to your devcontainer.json:"
+	echo '  "features": {'
+	echo '    "ghcr.io/devcontainers/features/node": {},'
+	echo '    "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {}'
+	echo '  }'
+	echo ""
+	echo "Required features:"
+	echo "  - ghcr.io/devcontainers/features/node (for npm)"
+	echo "  - ghcr.io/devcontainers/features/git (for version control)"
+	echo "  - ghcr.io/devcontainers/features/github-cli (for gh command)"
+	exit 1
 fi
 
 echo "npm found: $(npm --version)"
