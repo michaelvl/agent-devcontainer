@@ -20,15 +20,43 @@ Installs AI coding agents (OpenCode and/or Claude-Code) with git and GitHub CLI 
 | installClaudeCode | Install Claude-Code AI coding agent | boolean | true |
 | claudeCodeVersion | Version of Claude-Code to install | string | latest |
 
+## Prerequisites
+
+This feature requires the following DevContainer features to be installed **before** this feature:
+
+- **ghcr.io/devcontainers/features/node** - Provides Node.js and npm for installing the AI agents
+- **ghcr.io/devcontainers/features/git** - Version control system
+- **ghcr.io/devcontainers/features/github-cli** - GitHub command-line tool
+
+**Important:** You must add these features to your `devcontainer.json` alongside this feature. See the example below.
+
 ## What Gets Installed
 
-This will install:
-- ✅ **OpenCode** (latest version)
-- ✅ **Claude-Code** (latest version)
-- ✅ **Node.js** (via dependency)
-- ✅ **git** (via dependency)
-- ✅ **GitHub CLI** (gh) (via dependency)
+This feature installs:
+- ✅ **OpenCode** (latest version by default)
+- ✅ **Claude-Code** (latest version by default)
 - ✅ **OpenCode configuration** at `~/.config/opencode/opencode.jsonc`
+
+The following are **required prerequisites** that you must add to your devcontainer.json:
+- **Node.js and npm** - Required for installing the AI agents
+- **git** - Version control system
+- **GitHub CLI (gh)** - GitHub command-line tool
+
+## Complete Usage Example
+
+Here's a complete `devcontainer.json` with all required features:
+
+```json
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node": {},
+    "ghcr.io/devcontainers/features/git": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
+    "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {}
+  }
+}
+```
 
 ## Usage Examples
 
@@ -37,6 +65,9 @@ This will install:
 ```json
 {
   "features": {
+    "ghcr.io/devcontainers/features/node": {},
+    "ghcr.io/devcontainers/features/git": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
     "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {
       "installClaudeCode": false
     }
@@ -49,6 +80,9 @@ This will install:
 ```json
 {
   "features": {
+    "ghcr.io/devcontainers/features/node": {},
+    "ghcr.io/devcontainers/features/git": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
     "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {
       "installOpencode": false
     }
@@ -61,6 +95,9 @@ This will install:
 ```json
 {
   "features": {
+    "ghcr.io/devcontainers/features/node": {},
+    "ghcr.io/devcontainers/features/git": {},
+    "ghcr.io/devcontainers/features/github-cli": {},
     "ghcr.io/michaelvl/agent-devcontainer/ai-coding-agents:1": {
       "opencodeVersion": "1.2.0",
       "claudeCodeVersion": "stable"
@@ -87,15 +124,15 @@ OpenCode is pre-configured with the following settings:
 
 You can modify this file after container creation to customize your OpenCode settings.
 
-## Dependencies
+## Required Dependencies
 
-This feature automatically installs the following dependencies (you don't need to add them separately):
+This feature requires the following features to be added to your `devcontainer.json`:
 
-- **Node.js and npm** - Required for installing the AI agents
-- **git** - Version control system
-- **GitHub CLI (gh)** - GitHub command-line tool
+- **ghcr.io/devcontainers/features/node** - Provides Node.js and npm for installing the AI agents
+- **ghcr.io/devcontainers/features/git** - Version control system for development
+- **ghcr.io/devcontainers/features/github-cli** - GitHub command-line tool
 
-These are installed via the `dependsOn` property using official devcontainer features.
+These features use the `installsAfter` property to ensure they are installed in the correct order, but you must explicitly add them to your configuration.
 
 ## Implementation Notes
 
