@@ -1,0 +1,56 @@
+{
+  "id": "ai-coding-agents",
+  "version": "1.0.0",
+  "name": "AI Coding Agents (OpenCode & Claude-Code)",
+  "description": "Installs AI coding agents (OpenCode and/or Claude-Code) with git and GitHub CLI dependencies, including OpenCode configuration",
+  "documentationURL": "https://github.com/michaelvl/agent-devcontainer/tree/main/src/ai-coding-agents",
+  "options": {
+    "installOpencode": {
+      "type": "boolean",
+      "default": true,
+      "description": "Install OpenCode AI coding agent"
+    },
+    "opencodeVersion": {
+      "type": "string",
+      "proposals": [
+        "latest"
+      ],
+      "default": "latest",
+      "description": "Version of OpenCode to install"
+    },
+    "installClaudeCode": {
+      "type": "boolean",
+      "default": true,
+      "description": "Install Claude-Code AI coding agent"
+    },
+    "claudeCodeVersion": {
+      "type": "string",
+      "proposals": [
+        "latest",
+        "stable",
+        "next"
+      ],
+      "default": "latest",
+      "description": "Version of Claude-Code to install"
+    }
+  },
+  "dependsOn": {
+    "ghcr.io/devcontainers/features/node": {},
+    "ghcr.io/devcontainers/features/git": {},
+    "ghcr.io/devcontainers/features/github-cli": {}
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "github.copilot.chat.codeGeneration.instructions": [
+          {
+            "text": "This dev container includes OpenCode and/or Claude-Code AI coding agents, along with git and GitHub CLI (gh) for version control operations. OpenCode is pre-configured with a default configuration."
+          }
+        ]
+      }
+    }
+  }
+}
